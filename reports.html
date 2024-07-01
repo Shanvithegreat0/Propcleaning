@@ -89,7 +89,7 @@
         const database = firebase.database();
         const auth = firebase.auth();
 
-        const adminEmails = ["shanvishukla39@gmail.com", "thomas@propques.com", "amdixit1711@gmail.com"];
+        const adminEmails = ["shanvishukla39@gmail.com", "thomas@propques.com", "amdixit1711@gmail.com",""];
 
         auth.onAuthStateChanged(user => {
             if (user) {
@@ -113,7 +113,7 @@
             officeSelect.innerHTML = ''; // Clear any existing options
 
             if (isAdmin) {
-                const offices = ["Karyasthal", "Workdesq", "Workvia", "sso"];
+                const offices = ["cubispace", "Workdesq", "Workvia", "sso"];
                 offices.forEach(office => {
                     const option = document.createElement('option');
                     option.value = office;
