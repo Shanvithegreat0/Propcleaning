@@ -24,7 +24,7 @@ const auth = getAuth();
 const shoppingListEl = document.getElementById("shopping-list");
 
 function isAdmin(email) {
-  const adminEmails = ["shanvishukla39@gmail.com", "thomas@propques.com", "amdixit1711@gmail.com"];
+  const adminEmails = ["shanvishukla39@gmail.com", "thomas@propques.com", "amdixit1711@gmail.com", "prashant.m@cubispace.com"];
   return adminEmails.includes(email);
 }
 
