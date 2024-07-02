@@ -116,6 +116,10 @@
         <p id="task-time"></p>
         <button id="status-button">Mark as Complete</button>
     </div>
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script>
         function openNav() {
             document.getElementById("sidebar").style.width = "250px";
@@ -124,12 +128,22 @@
         function closeNav() {
             document.getElementById("sidebar").style.width = "0";
         }
-    </script>
-    <!-- Load Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script>
+
+        // Debugging logs to ensure URL parameters are read correctly
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskId = urlParams.get('id');
+        const office = urlParams.get('office');
+
+        console.log('URL Parameters:', { taskId, office });
+
+        if (!taskId || !office) {
+            console.error('Invalid task or office ID');
+            document.getElementById("task-name").textContent = "Invalid task or office ID";
+            throw new Error('Invalid task or office ID');
+        } else {
+            console.log('Valid parameters:', { taskId, office });
+        }
+
         // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAn2hwFs7g1StFNAGVbiOxTTcLbuNq1le0",
@@ -146,54 +160,48 @@
         const database = firebase.database();
         const auth = firebase.auth();
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const taskId = urlParams.get('id');
-        const office = urlParams.get('office');
+        // Correcting the office name casing based on known values
+        const officeMap = {
+            'workvia': 'Workvia',
+            'workdesq': 'Workdesq',
+            'sso': 'sso',
+            'karyasthal': 'Karyasthal',
+            'cubispace': 'Cubispace'
+        };
 
-        console.log('Task ID:', taskId);
-        console.log('Office:', office);
-
-        if (!taskId || !office) {
-            document.getElementById("task-name").textContent = "Invalid task or office ID";
-            console.error('Invalid task or office ID');
-            throw new Error('Invalid task or office ID');
+        const correctedOffice = officeMap[office.toLowerCase()];
+        if (!correctedOffice) {
+            console.error('Invalid office name:', office);
+            document.getElementById("task-name").textContent = "Invalid office name";
+            throw new Error('Invalid office name');
         }
 
-        // Correct the case of the office name if necessary
-        const officeCaseCorrected = office.charAt(0).toUpperCase() + office.slice(1);
-
-        let taskPath = `${officeCaseCorrected}/${taskId}`;
-
+        const taskPath = `${correctedOffice}/${taskId}`;
         console.log('Fetching task from path:', taskPath);
-
+        
         const taskRef = firebase.database().ref(taskPath);
         taskRef.once('value').then((snapshot) => {
-            console.log('Snapshot exists:', snapshot.exists());
             if (snapshot.exists()) {
                 const taskData = snapshot.val();
-                console.log('Task data retrieved:', taskData);
-
-                const taskStatus = taskData.status ? taskData.status.toLowerCase() : 'unknown';
-                console.log('Task status:', taskStatus);
-
+                console.log('Task data:', taskData);
                 document.getElementById("task-name").textContent = `Task: ${taskData.task}`;
                 document.getElementById("task-time").textContent = `Time: ${taskData.time}`;
                 const statusButton = document.getElementById("status-button");
 
-                if (taskStatus === "complete") {
+                if (taskData.status.toLowerCase() === "complete") {
                     statusButton.textContent = "Completed";
                     statusButton.classList.add("completed");
                     statusButton.disabled = true;
                 } else {
                     statusButton.textContent = "Mark as Complete";
                     statusButton.addEventListener("click", () => {
-                        window.location.href = `upload.html?id=${taskId}&office=${office}`;
+                        window.location.href = `upload.html?id=${taskId}&office=${correctedOffice}`;
                     });
                 }
             } else {
+                console.log('No task found at path:', taskPath);
                 document.getElementById("task-name").textContent = "Task not found";
                 document.getElementById("task-time").textContent = "";
-                console.warn('Task not found at path:', taskPath);
             }
         }).catch((error) => {
             console.error("Error fetching task details:", error);
