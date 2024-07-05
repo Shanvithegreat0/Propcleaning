@@ -145,7 +145,7 @@
             <form id="add-task-form">
                 <label for="office-select">Select Office:</label>
                 <select id="office-select" required>
-                    <option value="Karyasthal">Karyasthal</option>
+                    <option value="Cubispace">Cubispace</option>
                     <option value="Workdesq">Workdesq</option>
                     <option value="Workvia">Workvia</option>
                     <option value="sso">SSO</option>
@@ -208,18 +208,20 @@
 
         // Function to reset the status of all tasks to 'incomplete'
         async function resetAllTasks() {
-            const tasksRef = database.ref('Daily Tasks');
-            tasksRef.once('value', snapshot => {
-                if (snapshot.exists()) {
-                    snapshot.forEach(childSnapshot => {
-                        const taskKey = childSnapshot.key;
-                        database.ref(`Daily Tasks/${taskKey}/status`).set('incomplete');
-                    });
-                    alert("All tasks have been reset to 'incomplete'");
-                } else {
-                    alert("No tasks found");
-                }
-            });
+            const nodes = ['Cubispace', 'Daily Tasks', 'Karyasthal', 'Workdesq', 'Workvia', 'sso'];
+
+            for (let node of nodes) {
+                const tasksRef = database.ref(node);
+                tasksRef.once('value', snapshot => {
+                    if (snapshot.exists()) {
+                        snapshot.forEach(childSnapshot => {
+                            const taskKey = childSnapshot.key;
+                            database.ref(`${node}/${taskKey}/status`).set('incomplete');
+                        });
+                    }
+                });
+            }
+            alert("All tasks have been reset to 'incomplete'");
         }
 
         // Event listener for the reset button
