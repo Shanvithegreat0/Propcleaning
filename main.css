@@ -58,6 +58,24 @@ p span {
   border-radius: 30px;
   margin: 8px 0;
 }
+#office-signup{
+  position:relative;
+  left:28%;
+  top:5px;
+  margin-bottom: 10px;
+  background-color: #f9f9ff;
+  border: 2px solid #f9f9ff;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 16px;
+  margin: 8px 0;
+  width:40%;
+}
+#office-signup:focus{
+  border-color: #335ef7;
+  outline: none;
+}
 
 .floating-label label {
   position: absolute;
@@ -171,15 +189,28 @@ button:active{
 
 #return-btn {
   background: none;
-  color: grey;
-  text-decoration: underline;
+  color: blue;
+  margin-bottom: 11px;
+  text-decoration-line: none;
   border: none;
-  margin-top: 3%;
   cursor: pointer;
+  font-size: 20px;
+  width:10%;
+  position:relative;
+  right:4px;
+  text-wrap:nowrap;
 }
-
+div.rt{
+  display:flex;
+  width:90%;
+  margin:auto;
+  justify-content:center;
+  align-items: center;
+  margin-top:-20px;
+  text-wrap:nowrap;
+}
 #sign-up {
-  margin-top: 15px;
+  margin-top: 10px;
   border: none;
   display: block; /* Change display to block to force the next element to a new line */
   transition: all 100ms ease-in-out;
@@ -224,4 +255,17 @@ div.center{
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 12px;
+}
+#google-sign-up{
+  background-color:#ffffff;
+  color:black;
+  width:50%;
+  min-width:250px;
+  margin:auto;
+  margin-top:4px;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  column-gap: 10px;
+  font-weight:700;
 }

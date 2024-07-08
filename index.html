@@ -52,13 +52,25 @@
     </div>
 
     <div id="create-acct">
-      <h1>Create an Account</h1>
-      <input id="email-signup" type="text" placeholder="Email *"></input>
-      <input id="confirm-email-signup" type="email" placeholder="Confirm Email *"></input>
-      <input id="password-signup" type="password" placeholder="Password *"></input>
-      <input id="confirm-password-signup" type="password" placeholder="Confirm Password *"></input>
+      <div class="head">Create an Account</div>
+      <div class="floating-label">
+        <input type="text" id="email-signup" placeholder="" required/>
+        <label for="email-signup">Email</label>
+      </div>
+      <div class="floating-label">
+        <input type="text" id="confirm-email-signup" placeholder="" required/>
+        <label for="confirm-email-signup">Confirm Email</label>
+      </div>
+      <div class="floating-label">
+        <input type="password" id="password-signup" placeholder="" required/>
+        <label for="password-signup">Password</label>
+      </div>
+      <div class="floating-label">
+        <input type="password" id="confirm-password-signup" placeholder="" required/>
+        <label for="confirm-password-signup">Confirm Password</label>
+      </div>
       <select id="office-signup">
-        <option value="">Select Office *</option>
+        <option value="">Select Office</option>
         <option value="workvia">Workvia</option>
         <option value="workdesq">Workdesq</option>
         <option value="sso">Sapna Sangeeta Offices</option>
@@ -66,8 +78,8 @@
       </select>
       
       <button id="create-acct-btn">Create Account</button>
-      <button id="google-sign-up">Sign up with Google</button>
-      <button id="return-btn">Return to Login</button>
+      <button id="google-sign-up">Sign up with <img src="google.png" alt="icon"></button>
+      <div class="rt">Already Have an account? <button id="return-btn">Login</button></div>
     </div>
   </div>
   <script>
