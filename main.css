@@ -1,79 +1,168 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Mulish', sans-serif;
 }
 
 body {
-  background-color: hsl(0, 0%, 100%);
+  background-color: #ffffff;
   color: #0e0d0c;
+  overflow-y: hidden;
   user-select: none;
 }
 
 h1 {
   margin-bottom: 8%;
   text-align: center;
-  font-family: "Fredoka One", cursive;
-  color: #7243CD;
+  font-family: "Mulish", cursive;
   letter-spacing: 0.1em;
 }
 
 p {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  width: 100%;
+  margin-top:5px;
+  width: 90%;
+  margin:auto;
+  margin-bottom: 20px;
   text-align: center;
-  line-height: 0.1em;
+  line-height: 0.2em;
 }
 .or{
   border-bottom: 1px solid #000;
+  margin-bottom:30px;
 }
-
+h3.acc{
+  font-size:18px;
+  text-align:center;
+  margin-bottom: 12px;
+}
 p span {
   background: #fff;
   padding: 0 10px;
+  font-size:18px;
+}
+
+.floating-label {
+  position: relative;
+}
+
+.floating-label input{
+  width: 100%;
+  padding: 15px;
+  background-color: #f9f9ff;
+  border: 2px solid #f9f9ff;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  font-size: 20px;
+  border-radius: 30px;
+  margin: 8px 0;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  background: #f9f9ff;
+  padding: 0px 5px;
+  font-weight:500;
+  font-size: 20px;
+  color:#878787;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+  top: -1px;
+  left: 20px;
+  font-size: 16px;
+  color: #335ef7;
+}
+
+/* Input focus styling */
+.floating-label input:focus {
+  border-color: #335ef7;
+  outline: none;
 }
 
 input {
-  color: #7243CD;
-  background-color: #e3e4e7;
-  border: 2px solid #7243CD;
+  background-color: #f9f9ff;
+  border: 2px solid #f9f9ff;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 20px;
-  text-align: center;
-  margin: 10px 0;
+  margin: 8px 0;
   width: 100%;
 }
 
+input::placeholder{
+  font-weight:500;
+  font-size: 20px;
+  color:#878787;
+  padding-left: 10px;
+}
+
+.check{
+   display:flex;
+   align-items: center;
+   width:40%;
+   margin-top: 3px;
+   margin-left: 20px;
+}
+.check input[type="checkbox"] {
+  border:none;
+  box-shadow: none;
+  width: 15px;
+  height: 20px;
+}
+
+.check label{
+  text-wrap: nowrap;
+  font-size: 16px;
+  position: relative;
+  bottom:0px;
+  left: 6px;
+  color:#878787
+}
+
+
 button {
   color: #FDFDFD;
-  background-color: #7243CD;
+  background-color: #335ef7;
   border: 0;
   padding: 15px;
-  border-radius: 8px;
-  font-size: 20px;
+  border-radius: 35px;
+  font-size: 22px;
   text-align: center;
   margin-top: 10px;
   width: 100%;
 }
-
 button:hover {
-  background-color: #402773;
+  background-color: #357ae8;
   cursor: pointer;
+  transition: all 100ms ease-in;
+}
+button:active{
+  background-color: #2a65cc; 
+  transform: scale(0.97); 
+  transition: all 100ms ease-in-out;
 }
 
 .login-container {
-  background-color: white;
-  padding: 7%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 80%;
+  background-color: #ffffff;
+  padding: 40px;
+  width: 95%;
   max-width: 500px;
-  margin: 15vh auto;
+  margin: 6vh auto;
   border-radius: 8px;
+}
+
+.continue{
+  text-align:center;
+  margin-top: 35px;
+  font-size:24px;
 }
 
 #create-acct {
@@ -90,48 +179,49 @@ button:hover {
 }
 
 #sign-up {
+  margin-top: 15px;
   border: none;
   display: block; /* Change display to block to force the next element to a new line */
+  transition: all 100ms ease-in-out;
 }
 
 #forgot-password {
   text-align: center;
-  margin-top: 20px; /* Add some top margin */
+  margin-top: 30px; /* Add some top margin */
 }
 
 #forgot-password a {
-  color: #7243CD;
-  text-decoration: underline;
+  color: #000000;
+  font-size:19px;
+  text-decoration-line: none;
   cursor: pointer;
   display: block; /* Make the link a block element */
   margin-top: 10px; /* Add some top margin to separate it from other elements */
 }
 .google-sign-button {
   color: #fff;
-  background-color: #4285f4;
+  background-color: #ffffff;
   border: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 20px;
   text-align: center;
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  margin-right:10px;
+  margin-top:-5px;
+  margin-bottom: 5px;
+  width:10%;
+}
+div.center{
+  margin:auto;
+  text-align:center;
 }
 
 .google-sign-button:hover {
-  background-color: #1a73e8;
+  background-color: #ffffff;
   cursor: pointer;
 }
 
-.google-icon {
-  
-  margin-right: 10px;
-}
 .head{
   text-align: center;
-  font-size: 30px;
-  padding: 10px;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }

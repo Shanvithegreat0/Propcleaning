@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-IN">
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
             <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -16,19 +19,34 @@
 <body>
   <div class="login-container">
     <div id="main">
-      <div class="head">SignIn</div>
-      <input id="email" type="text" placeholder="Email"></input>
-      <input id="password" type="password" placeholder="Password"></input>
-      <button id="submit">Submit</button>
-      <p class="or"><span>or</span></p>
-      <button id="sign-up">Sign Up</button>
-      <p id="forgot-password"><a href="#">Forgot Password?</a></p> 
-      <button id="google-sign-in" class="google-sign-button">
-        <img href="google.png" viewBox="0 0 48 48" class="google-icon">
-          
-      </img>
-        Sign in with Google
-      </button>
+      <div class="head">Sign In</div>
+        <div class="floating-label">
+          <input type="text" id="email" placeholder="" required/>
+          <label for="email">Email</label>
+        </div>
+        <div class="floating-label">
+          <input type="password" id="password" placeholder="" required/>
+          <label for="password">Password</label>
+        </div>
+          <div class='check'>
+              <input
+                  type='checkbox'
+                  id="checkbox"
+                  checked={rememberMe}
+              />
+              <label for="checkbox">Remember me</label>
+          </div>
+        <button id="submit" class="slide">Submit</button>
+        <p id="forgot-password"><a href="#">Forgot Password?</a></p> 
+        <h3 class="continue">Continue with</h3>
+        <div class="center">
+          <button id="google-sign-in"  class="google-sign-button" alt="signin">
+            <img src="google.png" alt="icon">
+          </button>
+        </div>
+        <p class="or"><span>Or</span></p>
+        <h3 class="acc">Don't have an account? </h3>
+        <button id="sign-up" onclick="redirectToSignup()">Sign Up</button>
       
       <!-- Added Forgot Password -->
     </div>
@@ -52,6 +70,17 @@
       <button id="return-btn">Return to Login</button>
     </div>
   </div>
+  <script>
+    function redirectToSignup() {
+  const container = document.querySelector('.signin-container');
+  container.style.opacity = '0';
+  
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 500); 
+}
+
+  </script>
 
   <script type="module" src="script.js"></script>
 </body>
