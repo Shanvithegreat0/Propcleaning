@@ -82,6 +82,15 @@ googleSignUpButton.addEventListener("click", function() {
     });
 });
 
+// script.js
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+      document.getElementById('splash-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+  }, 3000); // Adjust the timeout duration as needed
+});
+
+
 // Email Sign-Up
 createacctbtn.addEventListener("click", function() {
   signupEmail = signupEmailIn.value;
