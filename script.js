@@ -100,13 +100,23 @@ document.addEventListener("DOMContentLoaded", function() {
   const continueButton = document.getElementById("continue-button");
 
   continueButton.addEventListener("click", function() {
-    const selectedOrganisation = document.getElementById("organisation").value;
+    const selectedOrganisation = document.getElementById("office-signup").value;
+    const user = auth.currentUser;
 
-    if (selectedOrganisation) {
-      // You can save the selected organization to the database if needed
-      console.log("Selected Organisation:", selectedOrganisation);
-      // Redirect to the landing page
-      window.location.href = "land.html";
+    if (selectedOrganisation && user) {
+      const userRef = ref(database, 'users/' + user.uid);
+      set(userRef, {
+        email: user.email,
+        office: selectedOrganisation
+      })
+      .then(() => {
+        console.log("Organisation saved successfully.");
+        window.location.href = "land.html";
+      })
+      .catch((error) => {
+        console.error("Error saving organisation:", error);
+        window.alert("Error occurred. Try again.");
+      });
     } else {
       window.alert("Please select an organisation.");
     }
