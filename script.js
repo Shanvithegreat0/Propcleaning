@@ -75,6 +75,7 @@ googleSignUpButton.addEventListener("click", function() {
     .then((result) => {
       const user = result.user;
       console.log("Signed up with Google successfully:", user);
+      window.location.href = "organ.html";
     })
     .catch((error) => {
       console.error("Error signing up with Google:", error);
@@ -88,6 +89,28 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('splash-screen').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
   }, 3000); // Adjust the timeout duration as needed
+});
+
+// script.js
+function goBack() {
+  window.history.back();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const continueButton = document.getElementById("continue-button");
+
+  continueButton.addEventListener("click", function() {
+    const selectedOrganisation = document.getElementById("organisation").value;
+
+    if (selectedOrganisation) {
+      // You can save the selected organization to the database if needed
+      console.log("Selected Organisation:", selectedOrganisation);
+      // Redirect to the landing page
+      window.location.href = "land.html";
+    } else {
+      window.alert("Please select an organisation.");
+    }
+  });
 });
 
 
